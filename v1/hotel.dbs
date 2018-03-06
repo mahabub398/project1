@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Hotel" id="Project_2775304a" template="Default" database="Cassandra" >
+	<schema name="hotel" catalogname="hotel" >
+		<table name="guest" >
+			<column name="phone" type="text" jt="12" mandatory="y" />
+			<column name="fname" type="text" jt="12" />
+			<column name="lname" type="text" jt="12" />
+			<column name="email" type="text" jt="12" />
+			<index name="Pk_guest" unique="PRIMARY_KEY" >
+				<column name="phone" />
+			</index>
+		</table>
+		<table name="hotels" >
+			<comment><![CDATA[Hotel Details]]></comment>
+			<column name="hotel_id" type="int" jt="4" mandatory="y" />
+			<column name="name" type="text" jt="12" />
+			<column name="phone" type="text" jt="12" />
+			<column name="address" type="text" jt="12" />
+			<column name="city" type="text" jt="12" />
+			<column name="state" type="text" jt="12" />
+			<column name="zip" type="text" jt="12" />
+			<index name="Pk_hotels" unique="PRIMARY_KEY" >
+				<column name="hotel_id" />
+			</index>
+		</table>
+		<table name="reservation" >
+			<column name="res_id" type="int" jt="4" mandatory="y" />
+			<column name="hotelid" type="int" jt="4" />
+			<column name="roomid" type="int" jt="4" />
+			<column name="phone" type="text" jt="12" />
+			<column name="name" type="text" jt="12" />
+			<column name="arrive" type="timestamp" jt="93" />
+			<column name="depart" type="timestamp" jt="93" />
+			<column name="rate" type="double" jt="8" />
+			<column name="ccnum" type="double" jt="8" />
+			<index name="Pk_reservation" unique="PRIMARY_KEY" >
+				<column name="res_id" />
+			</index>
+		</table>
+		<table name="room" >
+			<column name="hotelid" type="int" jt="4" mandatory="y" />
+			<column name="roomid" type="int" jt="4" />
+			<column name="num" type="int" jt="4" />
+			<column name="type" type="text" jt="12" />
+			<column name="rate" type="text" jt="12" />
+			<column name="coffee" type="text" jt="12" />
+			<column name="tv" type="text" jt="12" />
+			<column name="hottub" type="text" jt="12" />
+			<index name="Pk_room" unique="PRIMARY_KEY" >
+				<column name="hotelid" />
+			</index>
+		</table>
+	</schema>
+	<connector name="Hotel" database="Cassandra" driver_class="com.dbschema.CassandraJdbcDriver" driver_jar="cassandrajdbc1.1.jar" driver_desc="Without Password" host="localhost" port="9042" instance="Hotel" />
+	<layout name="Default Layout" id="Layout_133c1cd4" show_relation="columns" >
+		<entity schema="hotel" name="hotels" color="bcd5f1" x="45" y="45" />
+		<entity schema="hotel" name="guest" color="bcd5f1" x="60" y="240" />
+		<entity schema="hotel" name="room" color="bcd5f1" x="180" y="120" />
+		<entity schema="hotel" name="reservation" color="bcd5f1" x="300" y="120" />
+	</layout>
+</project>
